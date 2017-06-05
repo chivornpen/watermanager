@@ -19,10 +19,9 @@ class CreateTableDistricts extends Migration
             $table->integer('commune_id');
             $table->integer('user_id');
             $table->string('authorize');
-            $table->dateTimeTz('authorize_date');
+            $table->date('authorize_date');
             $table->string('recordStatus');
             $table->integer('recordNum');
-
             $table->timestamps();
         });
     }
