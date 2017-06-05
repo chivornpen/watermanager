@@ -78,7 +78,7 @@
                 </li>
                 <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
+    !-- /.navbar-top-links -->
         @include('nav.navi')
         </nav>
 
