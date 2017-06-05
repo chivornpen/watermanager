@@ -12,8 +12,12 @@
     <title>Water Managerments</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-
+    @yield('css')
+    <!-- <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css ">
+    <script src="{{asset('js/jquery-1.12.4.js')}}" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <!-- MetisMenu CSS -->
     <link href="{{asset('vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
 
@@ -92,8 +96,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-
+    
+    <!--<script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>-->
+    
+    @yield('script')
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 
@@ -102,7 +108,7 @@
 
     <!-- Morris Charts JavaScript -->
     <script src="{{asset('vendor/raphael/raphael.min.js')}}"></script>
-    <script src="{{asset('vendor/morrisjs/morris.min.js')}}"></script>
+    <!--<script src="{{asset('vendor/morrisjs/morris.min.js')}}"></script>-->
     <script src="{{asset('data/morris-data.js')}}"></script>
 
     <!-- Custom Theme JavaScript -->
