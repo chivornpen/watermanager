@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Role;
+use Auth;
 class UserController extends Controller
 {
     /**
@@ -26,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::pluck('name','id')->all();
+        return view('admin.user.create',compact('roles'));
     }
 
     /**
@@ -37,7 +40,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(bcrypt($request->password));
+        //validate
+        $this->validate($request,[
+            'name'=>'required|string|max:50',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        //insert into database
+        
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id'=>$request->role_id,
+            'userStatus'=>0,
+        ]);
+        return redirect()->route('users.index')->with('message','This Item Created Already');
     }
 
     /**
@@ -59,7 +78,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::findOrFail($id);
+        //dd($users);
+        $roles = Role::pluck('name','id')->all();
+        return view('admin.user.edit',compact('users','roles'));
     }
 
     /**
@@ -71,7 +93,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string|max:50',
+            'email' => 'required|string|email',
+        ]);
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id =$request->role_id;
+        $user->save();
+        return redirect()->route('users.index')->with('message','This Item Updated Already;');
     }
 
     /**
@@ -82,6 +113,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //dd($id);
+        $user=User::findOrFail($id);
+        if (Auth::user()->id != $id) {
+            $user->userStatus=1;
+            $user->save();
+            return redirect()->route('users.index')->with('message','This Item Deleted Already');
+        }else{
+            return redirect()->route('users.index')->with('message','You Can not Delete Yourself');
+        }
+
+        
     }
 }

@@ -9,7 +9,7 @@
 </div>
     <div class="row">
       <div class="col-lg-12">
-        {!!Form::open(['action'=>'UserController@index','method'=>'POST'])!!}
+        {!!Form::model($users,['action'=>['UserController@update',$users->id],'method'=>'PATCH'])!!}
           {{csrf_field()}}
           <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
             {!!Form::label('name','User name',[])!!}
@@ -28,23 +28,6 @@
                     <strong>{{ $errors->first('email') }}</strong>
                 </span>
             @endif
-          </div>
-          <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-            {!!Form::label('password','Password',[])!!}
-            {!!Form::password('password',['class'=>'form-control','required'=>'true'])!!}
-            @if ($errors->has('password'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-            @endif
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="form-group">
-                {!!Form::label('password-confirm','Confirm Password',[])!!}
-                {!!Form::password('password_confirmation',['class'=>'form-control','required'=>'true','id'=>'password-confirm'])!!}
-              </div>
-            </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
