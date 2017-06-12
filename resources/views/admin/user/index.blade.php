@@ -15,6 +15,7 @@
                 <th>No</th>
                 <th>Name</th>
 				<th>Email</th>
+				<th>Action</th>
             </tr>
         </thead>
 		<?php $no=1;?>
@@ -24,6 +25,7 @@
 				<td>{{$no++}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+				<td><a href="{{ route('users.edit',$user->id)}}">Edit</a></td>
             </tr>
 			@endforeach
         </tbody>

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css ">
     <script src="{{asset('js/jquery-1.12.4.js')}}" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="{{asset('js/getCombo.js')}}" type="text/javascript"></script>
     <!-- MetisMenu CSS -->
     <link href="{{asset('vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
 
@@ -82,7 +83,7 @@
                 </li>
                 <!-- /.dropdown -->
             </ul>
-    !-- /.navbar-top-links -->
+    <!-- /.navbar-top-links -->
         @include('nav.navi')
         </nav>
 

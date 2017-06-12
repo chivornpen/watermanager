@@ -22,4 +22,24 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
    	Route::get('/','DashbordController@index');
 	Route::resource('dashbords','DashbordController');
 	Route::resource('users','UserController');
+	Route::resource('customers','customerController');
+	Route::resource('staffs','StaffController');
+	Route::resource('roles','RoleController');
+	Route::resource('villages','VillageController');
+	
+});
+Route::get('/getProvince/{id}',function($id=1){
+	 	$district = DB::table('districts')->select('id','name')->where('province_id','=', $id)->get();
+        //dd($commune);
+        return response()->json($district);
+});
+Route::get('/getDistrict/{id}',function($id=1){
+	 	$commune = DB::table('communes')->select('id','name')->where('district_id','=', $id)->get();
+        //dd($commune);
+        return response()->json($commune);
+});
+Route::get('/getCommune/{id}',function($id=1){
+	 	$village = DB::table('villages')->select('id','name')->where('commune_id','=', $id)->get();
+        //dd($commune);
+        return response()->json($village);
 });
