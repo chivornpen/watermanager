@@ -57,7 +57,7 @@ class customerController extends Controller
         $this->validate($request, [
             // 'id' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'contactNo' => 'required|numeric|min:10',
+            'contactNo' => 'required|numeric|min:8',
             'email' => 'required|string|email|max:255|unique:customers',
             'homeNo' => 'required|string|max:255',
             'streetNo' => 'required|string|max:255',
@@ -141,7 +141,7 @@ class customerController extends Controller
         $this->validate($request, [
             // 'id' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'contactNo' => 'required|numeric|min:10',
+            'contactNo' => 'required|numeric|min:8',
             'homeNo' => 'required|string|max:255',
             'streetNo' => 'required|string|max:255',
             'village_id' => 'required',
