@@ -12,4 +12,8 @@ class Customer extends Model
     {
     	return $this->belongsTo('App\Village');
     }
+    public function usages()
+    {
+        return $this->hasMany(Usage::class);
+    }
 }

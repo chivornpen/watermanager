@@ -19,15 +19,15 @@ class CreateTableCustomers extends Migration
             $table->string('contactNo');
             $table->string('email');
             $table->string('homeNo');
-            $table->string('stringNo');
+            $table->string('streetNo');
             $table->integer('village_id');
             $table->integer('district_id');
             $table->integer('commune_id');
             $table->integer('province_id');
+            $table->integer('user_id');
             $table->string('cusbc')->nullable();
             $table->string('cusqr')->nullable();
-            $table->integer('user_id');
-            $table->string('cusStatus')->nullable();
+            $table->tinyInteger('cusStatus')->nullable();
             $table->string('authorizer')->nullable();
             $table->date('authorize_date')->nullable();
             $table->string('recordStatus')->nullable();

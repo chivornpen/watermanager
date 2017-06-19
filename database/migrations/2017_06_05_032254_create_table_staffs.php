@@ -23,6 +23,11 @@ class CreateTableStaffs extends Migration
             $table->integer('ssid');
             $table->string('position');
             $table->double('salary');
+            $table->integer('user_id');
+            $table->string('authorizer')->nullable();
+            $table->date('authorize_date')->nullable();
+            $table->string('recordStatus')->nullable();
+            $table->integer('recordNum')->nullable();
             $table->timestamps();
         });
     }

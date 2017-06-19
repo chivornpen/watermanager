@@ -19,11 +19,13 @@
     <script src="{{asset('js/jquery-1.12.4.js')}}" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="{{asset('js/getCombo.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/select2.js')}}" type="text/javascript"></script>
     <!-- MetisMenu CSS -->
     <link href="{{asset('vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('css/select2.min.css')}}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="{{asset('vendor/morrisjs/morris.css')}}" rel="stylesheet">
@@ -45,7 +47,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #1B4F72;" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -53,14 +55,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ route('dashbords.index') }}">Camsofts</a>
+                <a class="navbar-brand" href="{{ route('dashbords.index') }}" style="color: #fff;">Camsofts</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                    <a style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        {{ Auth::user()->name }}  <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>

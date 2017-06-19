@@ -16,7 +16,7 @@ class CreateTableVillages extends Migration
         Schema::create('villages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('district_id');
+            $table->integer('commune_id');
             $table->integer('user_id');
             $table->string('authorizer')->nullable();
             $table->date('authorize_date')->nullable();

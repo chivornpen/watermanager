@@ -8,18 +8,14 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <table id="example" cellspacing="0" border="1px">
+            <table id="example">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Name</th>
                 <th>Phone Number</th>
-                <th>Home No</th>
-                <th>street No</th>
-                <th>Village Name</th>
-                <th>Commune Name</th>
-                <th>District Name</th>
-                <th>Province Name</th>
+                <th>Address</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -30,12 +26,23 @@
                 <td>{{$no++}}</td>
                 <td>{{$customer->name}}</td>
                 <td>{{$customer->contactNo}}</td>
-                <td>{{$customer->homeNo}}</td>
-                <td>{{$customer->streetNo}}</td>
-                <td>{{$customer->village->name}}</td>
-                <td>{{$customer->village->commune->name}}</td>
-                <td>{{$customer->village->commune->district->name}}</td>
-                <td>{{$customer->village->commune->district->province->name}}</td>
+                <td>
+                    {{"No." . 
+                    $customer->homeNo . ", St." . 
+                    $customer->streetNo . ", " . 
+                    $customer->village->name . ", " . 
+                    $customer->village->commune->district->name . ", " . 
+                    $customer->village->commune->district->province->name . "."}}
+                </td>
+                <td>
+                    <?php 
+                        if($customer->cusStatus==1){
+                            echo "Use";
+                        }elseif($customer->cusStatus==0){
+                            echo "Stop";
+                        }
+                    ?>
+                </td>
                 <td>
                     <a href="{{ route('customers.edit',$customer->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
                     <form action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Are you sure you want to delete?')) { return true } else {return false };">

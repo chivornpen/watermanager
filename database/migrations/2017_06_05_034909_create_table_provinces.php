@@ -17,10 +17,10 @@ class CreateTableProvinces extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('user_id');
-            $table->string('authorize');
-            $table->integer('authorize_date');
-            $table->string('recordStatus');
-            $table->integer('recordNum');
+            $table->string('authorizer')->nullable();
+            $table->date('authorize_date')->nullable();
+            $table->string('recordStatus')->nullable();
+            $table->integer('recordNum')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateTableRoles extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('displayName');
-            $table->integer('user_id')->nullable();;
+            $table->integer('user_id')->nullable();
             $table->string('authorizer')->nullable();
             $table->date('authorize_date')->nullable();
             $table->string('recordStatus')->nullable();

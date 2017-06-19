@@ -1,5 +1,5 @@
 <?php
-
+use App\Customer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +25,13 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
 	Route::resource('customers','customerController');
 	Route::resource('staffs','StaffController');
 	Route::resource('roles','RoleController');
+	Route::resource('provinces','ProvinceController');
+	Route::resource('districts','DistrictController');
+	Route::resource('communes','CommuneController');
 	Route::resource('villages','VillageController');
+	Route::resource('invoices','InvoiceController');
+	Route::resource('usages','UsageController');
+
 	
 });
 Route::get('/getProvince/{id}',function($id=1){
@@ -43,3 +49,9 @@ Route::get('/getCommune/{id}',function($id=1){
         //dd($commune);
         return response()->json($village);
 });
+Route::get('/getEmail/{id}',function($id){
+	 	$cusemail = Customer::where('id','=', $id)->get();
+	 	//dump($cusemail);
+        return response()->json($cusemail);
+});
+

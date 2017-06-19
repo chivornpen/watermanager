@@ -38,20 +38,17 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('test');
         $this->validate($request, [
-            // 'id' => 'required|string|max:255',
             'name' => 'required|string',
-            'sex' => 'required|string',
+            'sex' => 'required',
             'address' => 'required|string',
-            'contactNo' => 'required|numeric|min:8',
+            'contactNo' => 'required|string|min:8',
             'email' => 'required|string|email|max:255|unique:staffs',
-            'ssid' => 'required|numeric|min:6',
+            'ssid' => 'required|string|min:8',
             'position' => 'required|string',
             'salary' => 'required|numeric',
         ]);
 
-            //dd(Input::get("name"));
             $staff = new Staff;
             $staff->user_id = Auth::user()->id;
             $staff->name = Input::get("name");     
@@ -100,12 +97,12 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|string',
-            'sex' => 'required|string',
+            'sex' => 'required',
             'address' => 'required|string',
-            'contactNo' => 'required|numeric|min:8',
-            'ssid' => 'required|numeric|min:6',
+            'contactNo' => 'required|string|min:8',
+            'ssid' => 'required|string|min:8',
             'position' => 'required|string',
             'salary' => 'required|numeric',
         ]);
@@ -114,7 +111,7 @@ class StaffController extends Controller
             $staff->sex = Input::get("sex");
             $staff->address = Input::get("address");
             $staff->contactNo = Input::get("contactNo");
-            //$staff->email = Input::get("email");
+            $staff->email = Input::get("email");
             $staff->ssid = Input::get("ssid");
             $staff->position = Input::get("position");
             $staff->salary = Input::get("salary");

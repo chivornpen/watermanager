@@ -11,6 +11,7 @@ use App\District;
 use App\Commune;
 use App\Village;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 //use vendor\symfony\console\Input\input;
 
@@ -24,9 +25,7 @@ class customerController extends Controller
     public function index()
     {
         $customer = Customer::all();
-        $user = User::all();
-        // dd($customers);
-        return view('admin.customer.index',compact('customer','user'));
+        return view('admin.customer.index',compact('customer'));
     }
 
     /**
@@ -41,6 +40,7 @@ class customerController extends Controller
          $districts = District::pluck('name','id')->all();
          $communes = Commune::pluck('name','id')->all();
          $villages = Village::pluck('name','id')->all();
+         $cusemail = Customer::pluck('email','id')->all();
         return view('admin.customer.create',compact('provinces','districts','communes','villages'));
          
     }
@@ -53,11 +53,9 @@ class customerController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
-            // 'id' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'contactNo' => 'required|numeric|min:8',
+            'contactNo' => 'required|string|min:8',
             'email' => 'required|string|email|max:255|unique:customers',
             'homeNo' => 'required|string|max:255',
             'streetNo' => 'required|string|max:255',
@@ -78,6 +76,8 @@ class customerController extends Controller
             // $user->user_id = Input::get('user_id');
 
             $customer = new Customer;
+            $input = $request->all();
+
             $customer->user_id = Auth::user()->id;
             $customer->name = $request->name;
             $customer->contactNo = Input::get("contactNo");
@@ -139,9 +139,8 @@ class customerController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            // 'id' => 'required|string|max:255',
             'name' => 'required|string|max:255',
-            'contactNo' => 'required|numeric|min:8',
+            'contactNo' => 'required|string|min:8',
             'homeNo' => 'required|string|max:255',
             'streetNo' => 'required|string|max:255',
             'village_id' => 'required',
@@ -160,15 +159,17 @@ class customerController extends Controller
             $customer = Customer::findOrFail($id);
             $customer->name = $request->name;
             $customer->contactNo = Input::get("contactNo");
+            $customer->email = Input::get("email");
             $customer->homeNo = Input::get("homeNo");
             $customer->streetNo = Input::get("streetNo");
             $customer->village_id = Input::get("village_id");
             $customer->district_id = Input::get("district_id");
             $customer->commune_id = Input::get("commune_id");
             $customer->province_id = Input::get("province_id");
-            // $user->cusbc = Input::get("cusbc");
-            // $user->cusqr = Input::get("cusqr");
-            // $user->user_id = Input::get("user_id");
+            $customer->cusbc = Input::get("cusbc");
+            $customer->cusqr = Input::get("cusqr");
+            $customer->cusStatus = Input::get("cusStatus");
+            // $customer->user_id = Input::get("user_id");
             // $user->cusStatus = Input::get("cusStatus");
             // $user->authorizer = Input::get("authorizer");
             // $user->authorize_date = Input::get("authorize_date");
